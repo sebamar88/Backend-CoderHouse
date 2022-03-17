@@ -1,48 +1,38 @@
-class User {
-  constructor(name, lastname, books, pets) {
-    return {
-      name: name,
-      lastname: lastname,
-      books: [books],
-      pets: [pets],
-      getFullName: function () {
-        return `${name} ${lastname}`;
-      },
-      addPet: function (pet) {
-        pets.push(pet);
-      },
-      countPets: function () {
-        return pets.length;
-      },
-      addBook: function (book, author) {
-        books.push({ book: book, author: author });
-      },
-      getBookNames: function () {
-        return books.map((book) => book.book);
-      },
+var UserTS = /** @class */ (function () {
+    function UserTS(name, lastname, books, pets) {
+        this.name = name;
+        this.lastname = lastname;
+        this.books = books;
+        this.pets = pets;
+    }
+    UserTS.prototype.getFullName = function () {
+        return "".concat(this.name, " ").concat(this.lastname);
     };
-  }
-}
-
-const user = new User(
-  "John",
-  "Doe",
-  [
+    UserTS.prototype.addPet = function (pet) {
+        this.pets.push(pet);
+    };
+    UserTS.prototype.countPets = function () {
+        return this.pets.length;
+    };
+    UserTS.prototype.addBook = function (book, author) {
+        this.books.push({ book: book, author: author });
+    };
+    UserTS.prototype.getBookNames = function () {
+        return this.books.map(function (bk) { return bk.book; });
+    };
+    return UserTS;
+}());
+var user = new UserTS("John", "Doe", [
     { book: "El Hobbit", author: "Tolkien" },
     { book: "Harry Potter", author: "Roling" },
-  ],
-  ["cat", "dog"]
-);
-
+], ["cat", "dog"]);
 console.log(user.getFullName());
 console.log(user.countPets());
 console.log(user.getBookNames());
-
 user.addBook("El señor de los anillos", "Tolkien");
 user.addBook("El señor de los anillos 2", "Tolkien");
 user.addBook("El señor de los anillos 3", "Tolkien");
 user.addBook("El principito", "Saint-Exupéry");
 user.addPet("bird");
-
 console.log(user.countPets());
 console.log(user.getBookNames());
