@@ -58,7 +58,7 @@ const saveItem = async (obj) => {
   fs.writeFileSync(path, JSON.stringify(json), function (err) {
     if (err) throw err;
   });
-  console.log("File is saved with id " + id);
+  console.log(id);
 };
 
 const getItemById = (id) => {
@@ -112,8 +112,8 @@ const deleteAllItems = async () => {
   });
 }); */
 
-getItemById(2);
+// getItemById(2);
 
-/* deleteItemById(2);
+// deleteItemById(2);
 
-deleteAllItems(); */
+// deleteAllItems();
