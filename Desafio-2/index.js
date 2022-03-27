@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = "./text.json";
+const Container = require("./Container");
 
 try {
   if (!fs.existsSync(path)) {
@@ -36,84 +37,39 @@ let obj = [
   },
 ];
 
+// En caso de borrar todos los items comentar el motodo de borrado,
+// descomentar la siguiente funcion y correr Node index.js
+
 /* fs.writeFile(path, JSON.stringify(obj), function (err) {
   if (err) throw err;
   console.log("File is saved.");
 }); */
 
-const getAllItems = async () => {
-  const data = await fs.promises.readFile(path, "utf8", function (err, data) {
-    if (err) throw err;
-    const json = JSON.parse(data);
-    return json;
-  });
-  return JSON.parse(data);
-};
 
-const saveItem = async (obj) => {
-  const json = await getAllItems();
-  const id = json.length + 1;
-  obj.id = id;
-  json.push(obj);
-  fs.writeFileSync(path, JSON.stringify(json), function (err) {
-    if (err) throw err;
-  });
-  console.log(id);
-};
+const container = new Container(path);
 
-const getItemById = (id) => {
-  fs.readFile(path, "utf8", function (err, data) {
-    if (err) throw err;
-    const json = JSON.parse(data);
-    const item = json.find((item) => item.id === id);
-    if (typeof item === "undefined") {
-      console.log(null);
-    } else {
-      console.log(item);
-    }
-  });
-};
+/* container.getAllItems().then((data) => {
+  console.log(data);
+}
+); */
 
-const deleteItemById = async (id) => {
-  fs.readFile(path, "utf8", function (err, data) {
-    if (err) throw err;
-    const json = JSON.parse(data);
-    const newArray = json.filter((item) => item.id !== id);
-
-    fs.writeFileSync(path, JSON.stringify(newArray), function (err) {
-      if (err) throw err;
-      console.log("File is saved.");
-    });
-  });
-};
-
-const deleteAllItems = async () => {
-  fs.readFile(path, "utf8", function (err, data) {
-    if (err) throw err;
-    const json = JSON.parse(data);
-    for (let i = json.length; i > 0; i--) {
-      json.pop();
-    }
-    fs.writeFileSync(path, JSON.stringify(json), function (err) {
-      if (err) throw err;
-      console.log("File is saved.");
-    });
-  });
-};
-
-/* saveItem({
+/* container.saveItem({
   title: "Nike Shoes",
   price: 123.45,
   thumbnail:
     "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
-}).then(() => {
-  getAllItems().then((data) => {
+}) */
+
+/* container.getItemById(2); */
+
+/* container.deleteItemById(2).then(() => {
+  container.getAllItems().then((data) => {
     console.log(data);
   });
 }); */
 
-// getItemById(2);
-
-// deleteItemById(2);
-
-// deleteAllItems();
+/* container.deleteAllItems().then(() => {
+  container.getAllItems().then((data) => {
+    console.log(data);
+  });
+}); */
