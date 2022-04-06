@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 
 // utils
 const getRandomItem = require("./utils/functions");
@@ -24,6 +25,6 @@ app.get("/randomProduct", async (req, res) => {
 });
 
 // Listen on port 8080
-app.listen(8080, () => {
-  console.log("Example app listening on port 3000!");
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening on port ${process.env.PORT}!`);
 });
