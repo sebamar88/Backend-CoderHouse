@@ -18,12 +18,12 @@ app.use(express.json());
 app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
 
-app.get("/", async (req, res) => {
-  res.render("index.hbs", { products: await container.getAllItems() });
+app.get("/", (req, res) => {
+  res.render("add.hbs");
 });
 
-app.get("/add-product", (req, res) => {
-  res.render("add.hbs");
+app.get("/products", async (req, res) => {
+  res.render("index.hbs", { products: await container.getAllItems() });
 });
 
 app.use("/api", routes);

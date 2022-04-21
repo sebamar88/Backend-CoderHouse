@@ -15,12 +15,12 @@ app.set("view engine", "ejs");
 
 // Create Express App
 
-app.get("/", async (req, res) => {
-  res.render("index.ejs", { products: await container.getAllItems() });
+app.get("/", (req, res) => {
+  res.render("add.ejs");
 });
 
-app.get("/add-new", (req, res) => {
-  res.render("add.ejs");
+app.get("/products", async (req, res) => {
+  res.render("index.ejs", { products: await container.getAllItems() });
 });
 
 app.use("/api", routes);

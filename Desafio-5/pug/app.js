@@ -16,12 +16,12 @@ app.set("views", "./views");
 
 app.set("view engine", "pug");
 
-app.get("/", async (req, res) => {
-  res.render("index.pug", { products: await container.getAllItems() });
+app.get("/", (req, res) => {
+  res.render("add.pug");
 });
 
-app.get("/add-products", (req, res) => {
-  res.render("add.pug");
+app.get("/products", async (req, res) => {
+  res.render("index.pug", { products: await container.getAllItems() });
 });
 
 app.use("/api", routes);

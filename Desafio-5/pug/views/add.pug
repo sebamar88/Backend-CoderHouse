@@ -9,7 +9,7 @@ html(lang="en")
             include styles.css
     body 
         h1 Add new Product
-        a.btn(href="/") Back to All Products
+        a.btn(href="/products") Back to All Products
         form(action="/api/products", method="post") 
             input.form-control(type="text", name="title", id="title", placeholder="Title")
             input.form-control(type="text", name="price", id="price", placeholder="Price")
