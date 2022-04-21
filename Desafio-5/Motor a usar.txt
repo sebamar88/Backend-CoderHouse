@@ -1,0 +1,1 @@
+Creo q voy a usar para mi proyecto o Pug o hbs. La verdad EJS me parecio espantoso, fue el q menos me gusto de los 3 motores
