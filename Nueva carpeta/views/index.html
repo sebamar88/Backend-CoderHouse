@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+      <input id="name" type="text" placeholder="Name" />
+      <input
+        id="input"
+        autocomplete="off"
+        autofocus="true"
+        placeholder="Message"
+      /><button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module">
+      const socket = io();
+      const form = document.getElementById("form");
+      const input = document.getElementById("input");
+      const messages = document.getElementById("messages");
+      const name = document.getElementById("name");
+      const button = document.querySelector("button");
+      const message = document.createElement("li");
+      const nameSpan = document.createElement("span");
+      const messageSpan = document.createElement("span");
+      const timeSpan = document.createElement("span");
+      const date = new Date();
+      const time = date.getHours() + ":" + date.getMinutes();
+      const nameText = document.createTextNode(name.value);
+      const messageText = document.createTextNode(input.value);
+      const timeText = document.createTextNode(time);
+      const messageTextNode = document.createTextNode(input.value);
+      const nameTextNode = document.createTextNode(name.value);
+      const timeTextNode = document.createTextNode(time);
+
+      nameSpan.appendChild(nameTextNode);
+      messageSpan.appendChild(messageTextNode);
+      timeSpan.appendChild(timeTextNode);
+      message.appendChild(nameSpan);
+      message.appendChild(messageSpan);
+      message.appendChild(timeSpan);
+      messages.appendChild(message);
+      input.value = "";
+      input.focus();
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        socket.emit("chat message", input.value);
+        input.value = "";
+        input.focus();
+      });
+
+      socket.on("chat message", (msg) => {
+        message.appendChild(nameSpan);
+        message.appendChild(messageSpan);
+        message.appendChild(timeSpan);
+        messages.appendChild(message);
+        input.value = "";
+        input.focus();
+      });
+    </script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
