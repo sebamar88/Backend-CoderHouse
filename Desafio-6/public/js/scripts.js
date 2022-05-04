@@ -7,7 +7,7 @@ const getLocalTime = (date) => {
     year: "numeric",
     hour: "numeric",
     minute: "numeric",
-    seconds: "numeric",
+    second: "numeric",
     hour12: false,
   };
   return date.toLocaleString("es-ES", options);
@@ -37,7 +37,17 @@ const sendProductByPost = (data) => {
     },
     body: dataString,
   });
-  console.log(data);
+};
+
+const sendMessageByPost = (data) => {
+  const dataString = JSON.stringify(data);
+  fetch("/api/chat", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: dataString,
+  });
 };
 
 form.addEventListener("submit", (e) => {
@@ -56,10 +66,13 @@ form.addEventListener("submit", (e) => {
 });
 
 (async () => {
-  const products = await fetch("/api/products");
-  const data = await products.json();
+  const [products, chat] = await Promise.all([
+    fetch("/api/products").then((r) => r.json()),
+    fetch("/api/chat").then((r) => r.json()),
+  ]);
+
   const productsContainer = $("#products");
-  data.forEach((product) => {
+  products.forEach((product) => {
     const child = `
     <tr>
         <td>${product.title}</td>
@@ -70,6 +83,19 @@ form.addEventListener("submit", (e) => {
     </tr>
     `;
     productsContainer.innerHTML += child;
+  });
+
+  chat.forEach((msg) => {
+    const message = `
+    <li><span class="email">${
+      msg.email
+    }</span>  <span class="time">[${getLocalTime(
+      msg.time
+    )}]</span> : <span class="messageText">
+        ${msg.message}
+    </span></li>
+    `;
+    messages.innerHTML += message;
   });
 })();
 
@@ -88,24 +114,23 @@ socket.on("add product", function (msg) {
 });
 
 /** Chat  */
-
+const time = new Date();
 chatForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const formData = {
     email: email.value,
     message: input.value,
+    time: getLocalTime(time),
   };
 
   if (input.value) {
     socket.emit("chat message", formData);
+    sendMessageByPost(formData);
     input.value = "";
-    content.style.display = "block";
   }
 });
 
 socket.on("chat message", function (msg) {
-  const time = new Date();
-
   const message = `
     <li><span class="email">${
       msg.email
