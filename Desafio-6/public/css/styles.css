@@ -124,7 +124,7 @@ th {
   text-align: center;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   text-decoration: underline;
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 
 #form {
@@ -140,7 +140,7 @@ th {
   backdrop-filter: blur(10px);
   margin: 0;
 }
-#name {
+#email {
   flex-grow: 0.05;
   border: none;
   padding: 0 1rem;
@@ -155,7 +155,7 @@ th {
   margin: 0.25rem;
 }
 #input:focus,
-#name:focus {
+#email:focus {
   outline: none;
 }
 #form > button {
@@ -178,4 +178,22 @@ th {
 }
 #messages > li:nth-child(odd) {
   background: #efefef;
+}
+
+.email {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 400;
+  color: blue;
+}
+
+.time {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+  color: brown;
+}
+
+.messageText {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-style: italic;
+  color: green;
 }

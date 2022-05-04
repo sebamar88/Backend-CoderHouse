@@ -2,6 +2,9 @@ const socket = io();
 
 const getLocalTime = (date) => {
   const options = {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
     hour: "numeric",
     minute: "numeric",
     seconds: "numeric",
@@ -22,7 +25,8 @@ const price = $("#price");
 const messages = $("#messages");
 const chatForm = $("#form");
 const input = $("#input");
-const name = $("#name");
+const email = $("#email");
+const content = $("#chatContent");
 
 const sendProductByPost = (data) => {
   const dataString = JSON.stringify(data);
@@ -88,13 +92,14 @@ socket.on("add product", function (msg) {
 chatForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const formData = {
-    name: name.value,
+    email: email.value,
     message: input.value,
   };
 
   if (input.value) {
     socket.emit("chat message", formData);
     input.value = "";
+    content.style.display = "block";
   }
 });
 
@@ -102,7 +107,13 @@ socket.on("chat message", function (msg) {
   const time = new Date();
 
   const message = `
-    <li>${getLocalTime(time)} - ${msg.name} : ${msg.message}</li>
+    <li><span class="email">${
+      msg.email
+    }</span>  <span class="time">[${getLocalTime(
+    time
+  )}]</span> : <span class="messageText">
+        ${msg.message}
+    </span></li>
     `;
   messages.innerHTML += message;
 
