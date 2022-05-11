@@ -1,4 +1,5 @@
 const Container = require("../../utils/classes/Container");
+const fs = require("fs");
 
 class Auth extends Container {
   constructor(path) {
