@@ -87,6 +87,16 @@
         "stock": 10
       },
       {
+        "name": "Escuadra 2",
+        "description": "Una descripcion",
+        "price": 1223.45,
+        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+        "id": 7,
+        "timestamp": "2020-01-01T00:00:00.000Z",
+        "sku": "2ksad23141asd",
+        "stock": 10
+      },
+      {
         "name": "Escuadra",
         "description": "Una descripcion",
         "price": 123.45,
