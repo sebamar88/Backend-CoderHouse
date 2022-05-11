@@ -1,13 +1,14 @@
 const path = "public/users.json";
 const jwt = require("jsonwebtoken");
 const CryptoJs = require("crypto-js");
-const Container = require("../../../utils/classes/Container");
-const container = new Container(path);
+
+const Auth = require("../../models/auth");
+const auth = new Auth(path);
 
 async function Login(req, res) {
   try {
     const { user } = req.body;
-    const users = await container.getAllItems();
+    const users = await auth.getAllItems();
     const userFound = users.find((currentUser) => currentUser.user === user);
 
     !userFound && res.status(401).json("Wrong credentials!");

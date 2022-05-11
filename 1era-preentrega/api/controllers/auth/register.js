@@ -1,6 +1,6 @@
 const path = "public/users.json";
-const Container = require("../../../utils/classes/Container");
-const container = new Container(path);
+const Auth = require("../../models/auth");
+const auth = new Auth(path);
 const CryptoJs = require("crypto-js");
 
 const CreateNewUser = async (req, res) => {
@@ -9,7 +9,7 @@ const CreateNewUser = async (req, res) => {
     password,
     process.env.PASS_SEC
   );
-  const data = await container.createNewUser({
+  const data = await auth.createNewUser({
     user: user,
     password: encryptedPassword.toString(),
   });
