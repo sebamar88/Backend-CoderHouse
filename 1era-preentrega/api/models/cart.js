@@ -74,7 +74,6 @@ class Cart extends Container {
   async addProductsToCart(cartId, products) {
     const json = await this.getAllItems();
     const cart = json.find((cart) => cart.cartId === cartId);
-    console.log(cart);
     products.map((product) => {
       cart.products.push(product);
     });
