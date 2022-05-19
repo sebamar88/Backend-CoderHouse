@@ -2,7 +2,7 @@ use ecommerce
 db
 db.createCollection("messages")
 db.createCollection("products")
-db.products.insert(
+db.products.insertMany(
     [
         {
             title: "Product 1",
@@ -56,7 +56,7 @@ db.products.insert(
         },
     ]
 )
-db.messages.insert(
+db.messages.insertMany(
     [
         {
             email: "email1@gmail.com",
@@ -115,7 +115,7 @@ db.products.find()
 db.messages.find()
 db.products.count()
 db.messages.count()
-db.products.insert(
+db.products.insertOne(
     {
         title: "Product 11",
         thumbnail: "https://placekitten.com/300/200",
