@@ -1,5 +1,12 @@
 const productsDb = require("../config/mariabd");
 
+export interface IProduct {
+  id: number;
+  title: string;
+  price: number;
+  thumbnail: string;
+}
+
 const listProducts = (params = {}) =>
   productsDb("products")
     .where(params)

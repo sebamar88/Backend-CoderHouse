@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const productsDb = require("../config/mariabd");
 const listProducts = (params = {}) => productsDb("products")
     .where(params)
