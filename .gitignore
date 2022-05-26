@@ -1,1 +1,4 @@
 node_modules
+FirebaseKey.json
+firebase.env
+mongo.env
