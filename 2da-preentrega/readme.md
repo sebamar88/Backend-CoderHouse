@@ -8,9 +8,12 @@
 - [x] [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 - [x] [Mongoose](https://mongoosejs.com/)
 - [x] [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-- [x] ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
+- [x] [![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)](https://firebase.google.com/)
 - [ ] [![JWT](https://img.shields.io/badge/json%20web%20tokens-323330?style=for-the-badge&logo=json-web-tokens&logoColor=pink)](https://jwt.io/)
 - [ ] [![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)](https://jestjs.io/)
+- [ ] [![Husky](https://img.shields.io/badge/Husky-323330?style=for-the-badge&logo=Husky&logoColor=white)](https://typicode.github.io/husky/)
+- [ ] [![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white)](https://swagger.io/)
+- [ ] [![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)](https://www.heroku.com/)
 
 ## Descripción del proyecto
 
@@ -43,7 +46,7 @@ Esta es la segunda pre-entrega de proyecto de Backend Coderhouse, en la cual se 
 2. Utilizar el comando `npm install` para instalar las dependencias
 3. Formas de ejecutar el proyecto:
 
-- Utilizar el comando `npm run dev` para iniciar el servidor (en localhost:3000), de esta forma se abriria con la configuracion por defecto
+- Utilizar el comando `npm run dev` para iniciar el servidor (en localhost:3000), de esta forma se abriria con la configuracion por defecto (previamente configuradas las variables de entorno en el archivo `.env`)
 - Utilizar el comando `npm run dev-mongo` para utilizar la base de datos en mongoDB (previamente configuradas las variables de entorno en el archivo `mongo.env`)
 - Utilizar el comando `npm run dev-fb` para utilizar la base de datos en Firestore (previamente configuradas las variables de entorno en el archivo `firebase.env`), este ultimo debe tener ademas el archivo `firebase.json` con la configuración de la base de datos, que lo puede obtener de la siguiente direccion: https://console.firebase.google.com/
 
@@ -54,3 +57,7 @@ Esta es la segunda pre-entrega de proyecto de Backend Coderhouse, en la cual se 
 
 [![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-1B9E77?style=for-the-badge&logo=visualstudio&logoColor=white)](https://code.visualstudio.com/)
 [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://www.microsoft.com/en-us/windows/)
+
+---
+
+[![BuyMeACoffee](https://cdn.buymeacoffee.com/buttons/default-orange.png)](https://www.buymeacoffee.com/sebamar88)
