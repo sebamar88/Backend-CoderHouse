@@ -1,5 +1,6 @@
 import express from "express";
 import { Server } from "socket.io";
+const shrinkRay = require("shrink-ray-current");
 const { NODE_ENV, PORT } = require("../config.js");
 const handlebars = require("express-handlebars").create({
   defaultLayout: "main",
@@ -22,6 +23,12 @@ const routes = require("./api/routes");
 const app = express();
 const http = require("http").Server(app);
 const io = new Server(http);
+
+app.use(
+  shrinkRay({
+    useZopfliForGzip: false,
+  })
+);
 
 app.use(express.static("public"));
 app.use("/static", express.static(__dirname + "/public"));
@@ -48,7 +55,6 @@ io.on("connection", (socket) => {
 app.get("/products", async (_req, res) => {
   try {
     const products = await Products.findAll();
-    console.log(products);
     res.render("index.hbs", { products });
   } catch (err) {
     res.status(500).json(err);
