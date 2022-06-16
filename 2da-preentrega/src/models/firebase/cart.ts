@@ -4,10 +4,22 @@ import { ICart } from "../../utils/types/cart";
 
 const cartsCollection = db.collection("carts");
 
+/**
+ * This function takes a string as an argument and returns a promise that resolves to an array of
+ * products.
+ * @param {string} id - string - the id of the cart
+ * @returns An array of products.
+ */
 async function getProductsFromCart(id: string) {
   const product = await cartsCollection.doc(id).get();
   return product.data().products;
 }
+
+/**
+ * It creates a new cart, adds it to the database, and returns the new cart.
+ * @param {IProduct[]} products - IProduct[]
+ * @returns A Promise&lt;ICart&gt;
+ */
 async function createNewCart(products: IProduct[]) {
   const newCart: ICart = {
     products,
@@ -22,6 +34,14 @@ async function createNewCart(products: IProduct[]) {
     });
   return newCart;
 }
+
+/**
+ * It takes a cart id and an array of products, gets the cart from the database, concatenates the new
+ * products to the existing products, removes duplicates, and updates the cart in the database.
+ * @param {string} id - string - the id of the cart
+ * @param {IProduct[]} product - IProduct[]
+ * @returns An array of objects.
+ */
 async function addProductsToCart(id: string, product: IProduct[]) {
   const cart = await cartsCollection.doc(id).get();
   const cartProducts = cart.data().products;
@@ -41,6 +61,10 @@ async function addProductsToCart(id: string, product: IProduct[]) {
   return arrayUniqueByKey;
 }
 
+/**
+ * It deletes a document from the carts collection in Firestore.
+ * @param {string} id - string - the id of the cart to delete
+ */
 async function deleteCart(id: string) {
   await cartsCollection
     .doc(id)
@@ -50,6 +74,12 @@ async function deleteCart(id: string) {
     });
 }
 
+/**
+ * It takes a cart id and an array of products, then it deletes the products from the cart
+ * @param {string} id - string - the id of the cart
+ * @param {IProduct[]} products - IProduct[]
+ * @returns The newProducts array.
+ */
 async function deteleProductsFromCart(id: string, products: IProduct[]) {
   const cart = await cartsCollection.doc(id).get();
   const cartProducts = cart.data().products;
@@ -69,7 +99,7 @@ async function deteleProductsFromCart(id: string, products: IProduct[]) {
   return newProducts;
 }
 
-const Products = {
+const Cart = {
   getProductsFromCart,
   createNewCart,
   addProductsToCart,
@@ -77,4 +107,4 @@ const Products = {
   deteleProductsFromCart,
 };
 
-module.exports = Products;
+module.exports = Cart;

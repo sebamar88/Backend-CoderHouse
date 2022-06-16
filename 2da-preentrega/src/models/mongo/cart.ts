@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 import { IProduct } from "../../utils/types/products";
 import { ICart } from "../../utils/types/cart";
 
+/* Creating a new schema for the product model. */
 const prodSchema = new Schema(
   {
     title: String,
@@ -20,6 +21,7 @@ const prodSchema = new Schema(
   }
 );
 
+/* Creating a new schema for the cart model. */
 const schema = new Schema(
   {
     products: {
@@ -35,6 +37,7 @@ const schema = new Schema(
   }
 );
 
+/* A static method that deletes a cart. */
 schema.statics.removeCart = async function (id: string): Promise<ICart> {
   try {
     const cart = await this.findOne({ _id: id });
@@ -47,6 +50,7 @@ schema.statics.removeCart = async function (id: string): Promise<ICart> {
   }
 };
 
+/* Adding products to the cart. */
 schema.statics.addProductsToCart = async function (
   cartId: string,
   products: IProduct[]
@@ -65,6 +69,7 @@ schema.statics.addProductsToCart = async function (
   }
 };
 
+/* Creating a new cart with the products passed in. */
 schema.statics.createNewCart = async function (
   products: IProduct[]
 ): Promise<ICart> {
@@ -76,6 +81,7 @@ schema.statics.createNewCart = async function (
   }
 };
 
+/* A static method that deletes products from a cart. */
 schema.statics.deleteProductsFromCart = async function (
   cartId: string,
   products: IProduct[]
@@ -96,6 +102,7 @@ schema.statics.deleteProductsFromCart = async function (
   }
 };
 
+/* A static method that returns the products from a cart. */
 schema.statics.getProductsFromCart = async function (
   cartId: string
 ): Promise<ICart> {

@@ -4,6 +4,8 @@ interface Container {
   path: string;
 }
 
+/* It's a class that has a constructor that takes a path to a JSON file, and two methods that either
+get all the items in the JSON file or delete all the items in the JSON file. */
 class Container {
   constructor(path: string) {
     this.path = path;

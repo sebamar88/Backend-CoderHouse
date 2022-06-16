@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const { v4: uuidv4 } = require("uuid");
 import { IProduct } from "../../utils/types/products";
 
+/* Creating a new schema for the model. */
 const schema = new Schema(
   {
     title: String,
@@ -20,6 +21,7 @@ const schema = new Schema(
   }
 );
 
+/* A static method that is used to delete a product by its id. */
 schema.statics.removeById = async function (id: string) {
   try {
     const searchAndDelete = await this.deleteOne({ _id: id });
@@ -31,6 +33,7 @@ schema.statics.removeById = async function (id: string) {
   }
 };
 
+/* A static method that is used to find a product by its id. */
 schema.statics.findById = async function (id: string): Promise<IProduct> {
   try {
     const product = await this.findOne({ _id: id });
@@ -41,6 +44,7 @@ schema.statics.findById = async function (id: string): Promise<IProduct> {
   }
 };
 
+/* A static method that is used to find all products. */
 schema.statics.findAll = async function (): Promise<IProduct[]> {
   try {
     return await this.find();
@@ -49,6 +53,7 @@ schema.statics.findAll = async function (): Promise<IProduct[]> {
   }
 };
 
+/* Creating a new product. */
 schema.statics.createProduct = async function (
   product: IProduct
 ): Promise<IProduct> {
@@ -62,6 +67,7 @@ schema.statics.createProduct = async function (
   }
 };
 
+/* Updating the product. */
 schema.statics.updateProduct = async function (
   id: string,
   product: IProduct

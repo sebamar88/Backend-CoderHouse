@@ -15,9 +15,10 @@ const addProductsToCart = require("./controllers/cart/addProductsToCart");
 const deleteProductsFromCart = require("./controllers/cart/deleteProductsFromCart");
 const getProductsFromCart = require("./controllers/cart/getProductsFromCart");
 
+/* Creating a new instance of the Router class. */
 const router = new Router();
 
-// // Products Routes
+// Products Routes
 router.get("/products", getAll);
 router.get("/products/:id", getById);
 router.post("/products", save);

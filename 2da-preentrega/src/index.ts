@@ -63,7 +63,7 @@ app.get("/products", async (_req, res) => {
 
 app.use("/api", routes);
 
-// Listen on port 8080
+/* Listening to the port that is defined in the config.js file. */
 http.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}!`);
 });
